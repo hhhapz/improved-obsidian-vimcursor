@@ -1,57 +1,40 @@
-## Obsidian Sample Plugin
+## Improved VimCursor
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+<video src="vimcursor.mp4" width="280"/>
 
-This project uses Typescript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in Typescript Definition format, which contains TSDoc comments describing what it does.
+This is a very simple plugin that defines 4 commands in the Vim instance for Obsidian. This defines
+great quality of life commands that allow the usage of 0 and $ to work as g0 and g$ in regular Vim.
+Namely, when the text is wrapping multiple lines, the above place the cursor at the visual beginning
+and visual end of the line (respectively).
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+This plugin also defines :pHead and :nHead to go to the next Markdown heading in the document. If
+none found before or after the cursor (depending on the command), it goes to the beginning, or end
+of the document (respectively).
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Changes the default font color to red using `styles.css`.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- `:g0`: Go to the visual start of the current line.
 
-### First time developing plugins?
+- `:g$` Go to the visual end of the current line.
 
-Quick starting guide for new plugin devs:
+- `:pHead` Go to the most previous defined heading in the document.
 
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+- `:nHead` Go to the next defined heading in the document.
 
-### Releasing new releases
+This plugin has an implicit dependency on [obsidian-vimrc-support][vimrc]
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments.
-- Publish the release.
+Here is how I define my .obsidian.vimrc:
 
-### Adding your plugin to the community plugin list
+```vim
+nmap j gj
+nmap k gk
+nmap 0 :g0
+nmap $ :gDollar
+nmap [[ :pHead
+nmap ]] :nHead
 
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
 
-### How to use
+vmap j gj
+vmap k gk
+```
 
-- Clone this repo.
-- `npm i` or `yarn` to install dependencies
-- `npm run dev` to start compilation in watch mode.
 
-### Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-### API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+[vimrc]: https://github.com/esm7/obsidian-vimrc-support
