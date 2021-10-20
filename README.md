@@ -1,7 +1,5 @@
 ## Improved VimCursor
 
-![](vimcursor.mp4)
-
 This is a very simple plugin that defines 4 commands in the Vim instance for Obsidian. This defines
 great quality of life commands that allow the usage of 0 and $ to work as g0 and g$ in regular Vim.
 Namely, when the text is wrapping multiple lines, the above place the cursor at the visual beginning
