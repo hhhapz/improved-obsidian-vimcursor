@@ -5,18 +5,16 @@ declare const CodeMirror: any;
 export default class ImprovedVimCursor extends Plugin {
   async onload() {
     this.setup()
+  }
 
-    this.registerEvent(this.app.workspace.on('file-open', () => {
-      this.setup();
-    }));
+  async onunload() {
+    CodeMirror.Vim.defineEx("g0", false, undefined);
+    CodeMirror.Vim.defineEx("gDollar", false, undefined);
+    CodeMirror.Vim.defineEx("pHead", false, undefined);
+    CodeMirror.Vim.defineEx("nHead", false, undefined);
   }
 
   setup() {
-    let view = this.app.workspace.getActiveViewOfType(MarkdownView)
-    if(!view) {
-      return
-    }
-
     CodeMirror.Vim.defineEx("g0", false, (cm: CodeMirror.Editor) => {
       cm.execCommand("goLineLeftSmart");
     })
