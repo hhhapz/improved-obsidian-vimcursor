@@ -1,4 +1,10 @@
-## Improved VimCursor
+# Improved VimCursor
+
+## ⛔ This plugin is deprecated/obsolete as of Aug 5 2024
+
+You should no longer need this plugin, which is [no longer functional](https://github.com/hhhapz/improved-obsidian-vimcursor/issues/1) after an Obsidian upgrade to Codemirror 6. `g0` and `g$` are now available out-of-the-box in codemirror-vim (Obsidian's vim software); and `:pHead` and `:nHead` are now implemented (as `[[` and `]]` motions) by [obsidian-vimrc-support](vimrc). You can still remap these to other keys as desired in your `.obsidian.vimrc`.
+
+## Previous README
 
 This is a very simple plugin that defines 4 commands in the Vim instance for Obsidian. This defines
 great quality of life commands that allow the usage of 0 and $ to work as g0 and g$ in regular Vim.
@@ -33,6 +39,5 @@ nmap ]] :nHead
 vmap j gj
 vmap k gk
 ```
-
 
 [vimrc]: https://github.com/esm7/obsidian-vimrc-support
